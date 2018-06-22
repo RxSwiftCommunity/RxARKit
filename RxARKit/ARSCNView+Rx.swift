@@ -24,7 +24,7 @@ extension Reactive where Base: ARSCNView {
     ///
     /// - parameter delegate: Delegate object.
     /// - returns: Disposable object that can be used to unbind the delegate.
-    public func setDelegate(_ delegate: UIPickerViewDelegate)
+    public func setDelegate(_ delegate: ARSCNViewDelegate)
         -> Disposable {
             return RxARSCNViewDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
     }
