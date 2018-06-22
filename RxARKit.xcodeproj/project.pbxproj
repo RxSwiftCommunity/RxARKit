@@ -10,6 +10,8 @@
 		94E65A7120DD720000E49D1B /* RxARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E65A6720DD720000E49D1B /* RxARKit.framework */; };
 		94E65A7620DD720000E49D1B /* RxARKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E65A7520DD720000E49D1B /* RxARKitTests.swift */; };
 		94E65A7820DD720000E49D1B /* RxARKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E65A6A20DD720000E49D1B /* RxARKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94E65AD820DD742B00E49D1B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E65AD620DD742A00E49D1B /* RxCocoa.framework */; };
+		94E65AD920DD742B00E49D1B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E65AD720DD742B00E49D1B /* RxSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,8 @@
 		94E65AD220DD737E00E49D1B /* Cartfile.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		94E65AD320DD737E00E49D1B /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		94E65AD420DD737E00E49D1B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		94E65AD620DD742A00E49D1B /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		94E65AD720DD742B00E49D1B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94E65AD820DD742B00E49D1B /* RxCocoa.framework in Frameworks */,
+				94E65AD920DD742B00E49D1B /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +70,7 @@
 				94E65A6920DD720000E49D1B /* RxARKit */,
 				94E65A7420DD720000E49D1B /* RxARKitTests */,
 				94E65A6820DD720000E49D1B /* Products */,
+				94E65AD520DD742A00E49D1B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +101,15 @@
 			path = RxARKitTests;
 			sourceTree = "<group>";
 		};
+		94E65AD520DD742A00E49D1B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94E65AD620DD742A00E49D1B /* RxCocoa.framework */,
+				94E65AD720DD742B00E49D1B /* RxSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -116,6 +132,8 @@
 				94E65A6320DD720000E49D1B /* Frameworks */,
 				94E65A6420DD720000E49D1B /* Headers */,
 				94E65A6520DD720000E49D1B /* Resources */,
+				94E65AE820DD74AE00E49D1B /* Carthage */,
+				94E65AE920DD74B000E49D1B /* Delete Nested Framework(s) */,
 			);
 			buildRules = (
 			);
@@ -196,6 +214,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		94E65AE820DD74AE00E49D1B /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		94E65AE920DD74B000E49D1B /* Delete Nested Framework(s) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Delete Nested Framework(s)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [[ -d \"Frameworks\" ]]; then\n    rm -fr Frameworks\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		94E65A6220DD720000E49D1B /* Sources */ = {
