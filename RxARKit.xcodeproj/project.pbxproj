@@ -18,6 +18,7 @@
 		94E65AF320DD8D1600E49D1B /* ARSession+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E65AF220DD8D1600E49D1B /* ARSession+Rx.swift */; };
 		94E65AF520DD8D2900E49D1B /* ARSKView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E65AF420DD8D2900E49D1B /* ARSKView+Rx.swift */; };
 		94E65AF720DD8D3400E49D1B /* ARSCNView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E65AF620DD8D3400E49D1B /* ARSCNView+Rx.swift */; };
+		94E65AFA20DE111100E49D1B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E65AEA20DD86DE00E49D1B /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -276,6 +277,7 @@
 			files = (
 				94E65AEF20DD8CE800E49D1B /* RxARSCNViewDelegateProxy.swift in Sources */,
 				94E65AF320DD8D1600E49D1B /* ARSession+Rx.swift in Sources */,
+				94E65AFA20DE111100E49D1B /* File.swift in Sources */,
 				94E65AF720DD8D3400E49D1B /* ARSCNView+Rx.swift in Sources */,
 				94E65AF520DD8D2900E49D1B /* ARSKView+Rx.swift in Sources */,
 				94E65AED20DD8CD900E49D1B /* RxARSessionDelegateProxy.swift in Sources */,

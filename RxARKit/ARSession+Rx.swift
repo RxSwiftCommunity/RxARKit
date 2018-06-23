@@ -34,9 +34,9 @@ extension Reactive where Base: ARSession {
     // Reactive wrapper for delegate method `session(_ session: ARSession, didUpdate frame: ARFrame)`
     public var didUpdateFrame: ControlEvent<ARFrame> {
         let source = delegate
-            .methodInvoked(#selector(ARSessionDelegate.session(_:didUpdate:)))
+            .methodInvoked(#selector(ARSessionDelegate.session(_:didUpdate:) as ((ARSessionDelegate) -> (ARSession, ARFrame) -> Void)?))
             .map { value -> ARFrame in
-                return try castOptionalOrThrow(ARFrame.self, value[1] as AnyObject)
+                return try castOrThrow(ARFrame.self, value[1] as AnyObject)
         }
         return ControlEvent(events: source)
     }
