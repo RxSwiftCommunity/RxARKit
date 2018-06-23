@@ -28,5 +28,25 @@ extension Reactive where Base: ARSCNView {
         -> Disposable {
             return RxARSCNViewDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
     }
+    
+    // MARK:- ARSCNViewDelegate
+    
+    // Reactive wrapper for delegate method `renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?`
+//    public var didUpdateFrame: ControlEvent<ARFrame> {
+//        let source = delegate
+//            .methodInvoked(#selector(ARSCNViewDelegate.renderer(_:nodeFor:)))
+//            .map { value -> ARFrame in
+//                return try castOrThrow(ARFrame.self, value[1] as AnyObject)
+//        }
+//        return ControlEvent(events: source)
+//    }
+
+    
+//    optional public func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?
+//    optional public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor)
+//    optional public func renderer(_ renderer: SCNSceneRenderer, willUpdate node: SCNNode, for anchor: ARAnchor)
+//    optional public func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor)
+//    optional public func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor)
+
 }
 

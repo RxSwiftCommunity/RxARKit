@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		940A994B20DECEB100ACB124 /* RxSceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A994920DECEB100ACB124 /* RxSceneKit.framework */; };
+		940A994C20DECEB100ACB124 /* RxSpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940A994A20DECEB100ACB124 /* RxSpriteKit.framework */; };
 		94E65A7120DD720000E49D1B /* RxARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E65A6720DD720000E49D1B /* RxARKit.framework */; };
 		94E65A7620DD720000E49D1B /* RxARKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E65A7520DD720000E49D1B /* RxARKitTests.swift */; };
 		94E65A7820DD720000E49D1B /* RxARKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E65A6A20DD720000E49D1B /* RxARKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		940A994920DECEB100ACB124 /* RxSceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSceneKit.framework; path = ../../Carthage/Build/iOS/RxSceneKit.framework; sourceTree = "<group>"; };
+		940A994A20DECEB100ACB124 /* RxSpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSpriteKit.framework; path = ../../Carthage/Build/iOS/RxSpriteKit.framework; sourceTree = "<group>"; };
 		94E65A6720DD720000E49D1B /* RxARKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxARKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94E65A6A20DD720000E49D1B /* RxARKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxARKit.h; sourceTree = "<group>"; };
 		94E65A6B20DD720000E49D1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +55,7 @@
 		94E65AF220DD8D1600E49D1B /* ARSession+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARSession+Rx.swift"; sourceTree = "<group>"; };
 		94E65AF420DD8D2900E49D1B /* ARSKView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARSKView+Rx.swift"; sourceTree = "<group>"; };
 		94E65AF620DD8D3400E49D1B /* ARSCNView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARSCNView+Rx.swift"; sourceTree = "<group>"; };
+		94E65AFB20DE332C00E49D1B /* RxARSessionObserverProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxARSessionObserverProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940A994B20DECEB100ACB124 /* RxSceneKit.framework in Frameworks */,
+				940A994C20DECEB100ACB124 /* RxSpriteKit.framework in Frameworks */,
 				94E65AD820DD742B00E49D1B /* RxCocoa.framework in Frameworks */,
 				94E65AD920DD742B00E49D1B /* RxSwift.framework in Frameworks */,
 			);
@@ -100,6 +107,7 @@
 		94E65A6920DD720000E49D1B /* RxARKit */ = {
 			isa = PBXGroup;
 			children = (
+				94E65AFB20DE332C00E49D1B /* RxARSessionObserverProxy.swift */,
 				94E65AEC20DD8CD900E49D1B /* RxARSessionDelegateProxy.swift */,
 				94E65AF020DD8CF500E49D1B /* RxARSKViewDelegateProxy.swift */,
 				94E65AEE20DD8CE800E49D1B /* RxARSCNViewDelegateProxy.swift */,
@@ -125,6 +133,8 @@
 		94E65AD520DD742A00E49D1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				940A994920DECEB100ACB124 /* RxSceneKit.framework */,
+				940A994A20DECEB100ACB124 /* RxSpriteKit.framework */,
 				94E65AD620DD742A00E49D1B /* RxCocoa.framework */,
 				94E65AD720DD742B00E49D1B /* RxSwift.framework */,
 			);
@@ -246,6 +256,8 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSceneKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSpriteKit.framework",
 			);
 			name = Carthage;
 			outputPaths = (

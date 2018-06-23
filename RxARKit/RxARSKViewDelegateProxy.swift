@@ -9,3 +9,28 @@
 import ARKit
 import RxSwift
 import RxCocoa
+
+extension ARSKView: HasDelegate {
+    public typealias Delegate = ARSKViewDelegate
+}
+
+open class RxARSKViewDelegateProxy
+    : DelegateProxy<ARSKView, ARSKViewDelegate>
+    , DelegateProxyType
+, ARSKViewDelegate {
+    
+    /// Typed parent object.
+    public weak private(set) var view: ARSKView?
+    
+    /// - parameter view: Parent object for delegate proxy.
+    public init(view: ParentObject) {
+        self.view = view
+        super.init(parentObject: view, delegateProxy: RxARSKViewDelegateProxy.self)
+    }
+    
+    // Register known implementationss
+    public static func registerKnownImplementations() {
+        self.register { RxARSKViewDelegateProxy(view: $0) }
+    }
+}
+

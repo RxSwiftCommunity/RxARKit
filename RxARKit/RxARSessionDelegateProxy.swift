@@ -14,10 +14,10 @@ extension ARSession: HasDelegate {
     public typealias Delegate = ARSessionDelegate
 }
 
-open class RxARSessionDelegateProxy
-    : DelegateProxy<ARSession, ARSessionDelegate>
-    , DelegateProxyType
-, ARSessionDelegate {
+open class RxARSessionDelegateProxy:
+    DelegateProxy<ARSession, ARSessionDelegate>,
+    DelegateProxyType,
+    ARSessionDelegate {
     
     /// Typed parent object.
     public weak private(set) var session: ARSession?
@@ -31,5 +31,7 @@ open class RxARSessionDelegateProxy
     // Register known implementationss
     public static func registerKnownImplementations() {
         self.register { RxARSessionDelegateProxy(session: $0) }
+        // TODO: SCN, SK
+        
     }
 }
