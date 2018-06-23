@@ -28,4 +28,21 @@ extension Reactive where Base: ARSession {
         -> Disposable {
             return RxARSessionDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
     }
+    
+    // MARK:- ARSessionDelegate : ARSessionObserver
+    
+    // Reactive wrapper for delegate method `session(_ session: ARSession, didUpdate frame: ARFrame)`
+    public var didUpdateFrame: ControlEvent<ARFrame> {
+        let source = delegate
+            .methodInvoked(#selector(ARSessionDelegate.session(_:didUpdate:)))
+            .map { value -> ARFrame in
+                return try castOptionalOrThrow(ARFrame.self, value[1] as AnyObject)
+        }
+        return ControlEvent(events: source)
+    }
+
+    // MARK:- ARSessionObserver
+    
+    
+    
 }
