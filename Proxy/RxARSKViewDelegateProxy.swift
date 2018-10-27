@@ -55,8 +55,7 @@ open class RxARSKViewDelegateProxy: RxARSKViewDelegate, DelegateProxyType, ARSKV
     
     static let defaultNodeForAnchor: SKNodeForAnchor = { (view, anchor) -> SKNode? in nil }
     static let defaultShouldRenderAtTime: ShouldRenderAtTime = { (view, time) -> Bool in true }
-    
-    
+        
     // MARK: - ARSKViewDelegate
     
     public func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
