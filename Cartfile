@@ -1,3 +1,1 @@
-github "ReactiveX/RxSwift" ~> 4.0.0
-github "maxvol/RxSpriteKit" ~> 0.0.1
-github "maxvol/RxSceneKit" ~> 0.0.1
+github "ReactiveX/RxSwift" ~> 4.3.1
