@@ -6,7 +6,6 @@
 //  Copyright © 2018 Maxim Volgin. All rights reserved.
 //
 
-import ARKit
 #if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
