@@ -26,3 +26,8 @@ public typealias EventSKNodeForAnchor = (view: ARSKView, node: SKNode, anchor: A
 // MARK: - ARSCNViewDelegate
 
 public typealias EventSCNNodeForAnchor = (renderer: SCNSceneRenderer, node: SCNNode, anchor: ARAnchor)
+
+// MARK: - SCNSceneRendererDelegate
+
+public typealias EventTime = (renderer: SCNSceneRenderer, time: TimeInterval)
+public typealias EventRender = (renderer: SCNSceneRenderer, scene: SCNScene, time: TimeInterval)

@@ -7,8 +7,10 @@
 //
 
 import ARKit
+#if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
+#endif
 
 extension Reactive where Base: ARSKView {
     
@@ -25,28 +27,28 @@ extension Reactive where Base: ARSKView {
     
     public var didAddNodeForAnchor: ControlEvent<EventSKNodeForAnchor> {
         let source: Observable<EventSKNodeForAnchor> = delegate
-            .methodInvoked(.didAddNodeForAnchor)
+            .methodInvoked(.didAddSKNodeForAnchor)
             .map(toEventSKNodeForAnchor)
         return ControlEvent(events: source)
     }
 
     public var willUpdateNodeForAnchor: ControlEvent<EventSKNodeForAnchor> {
         let source: Observable<EventSKNodeForAnchor> = delegate
-            .methodInvoked(.willUpdateNodeForAnchor)
+            .methodInvoked(.willUpdateSKNodeForAnchor)
             .map(toEventSKNodeForAnchor)
         return ControlEvent(events: source)
     }
 
     public var didUpdateNodeForAnchor: ControlEvent<EventSKNodeForAnchor> {
         let source: Observable<EventSKNodeForAnchor> = delegate
-            .methodInvoked(.didUpdateNodeForAnchor)
+            .methodInvoked(.didUpdateSKNodeForAnchor)
             .map(toEventSKNodeForAnchor)
         return ControlEvent(events: source)
     }
 
     public var didRemoveNodeForAnchor: ControlEvent<EventSKNodeForAnchor> {
         let source: Observable<EventSKNodeForAnchor> = delegate
-            .methodInvoked(.didRemoveNodeForAnchor)
+            .methodInvoked(.didRemoveSKNodeForAnchor)
             .map(toEventSKNodeForAnchor)
         return ControlEvent(events: source)
     }

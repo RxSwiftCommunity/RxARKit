@@ -45,5 +45,20 @@ open class RxARSCNViewDelegateProxy: RxARSCNViewDelegate, DelegateProxyType, ARS
     open class func setCurrentDelegate(_ delegate: ARSCNViewDelegate?, to object: ParentObject) {
         object.delegate = delegate
     }
+    
+    // MARK: - lambda
+    
+    open var nodeForAnchor: SCNNodeForAnchor = RxARSCNViewDelegateProxy.defaultNodeForAnchor
+    
+    // MARK: - default lambda
+    
+    static let defaultNodeForAnchor: SCNNodeForAnchor = { (renderer, anchor) -> SCNNode? in nil }
+    
+    // MARK: - ARSCNViewDelegate
+    
+    public func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        return self.nodeForAnchor(renderer, anchor)
+    }
+    
 }
 

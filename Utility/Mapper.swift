@@ -62,10 +62,24 @@ func toEventSKNodeForAnchor(_ args: [Any]) throws -> EventSKNodeForAnchor {
 
 // MARK: - ARSCNViewDelegate
 
-//func toEventSCNNodeForAnchor(_ args: [Any]) throws -> EventSCNNodeForAnchor {
-//    let session = try castOrThrow(ARSession.self, args[0])
-//    let anchors = try castOrThrow(Array<ARAnchor>.self, args[1])
-//let anchor = try castOrThrow(ARAnchor.self, args[2])
-//    return (session, anchors)
-//}
+func toEventSCNNodeForAnchor(_ args: [Any]) throws -> EventSCNNodeForAnchor {
+    let sceneRenderer = try castOrThrow(SCNSceneRenderer.self, args[0])
+    let node = try castOrThrow(SCNNode.self, args[1])
+    let anchor = try castOrThrow(ARAnchor.self, args[2])
+    return (sceneRenderer, node, anchor)
+}
 
+// MARK: - SCNSceneRendererDelegate
+
+func toEventTime(_ args: [Any]) throws -> EventTime {
+    let renderer = try castOrThrow(SCNSceneRenderer.self, args[0])
+    let time = try castOrThrow(TimeInterval.self, args[1])
+    return (renderer, time)
+}
+
+func toEventRender(_ args: [Any]) throws -> EventRender {
+    let renderer = try castOrThrow(SCNSceneRenderer.self, args[0])
+    let scene = try castOrThrow(SCNScene.self, args[1])
+    let time = try castOrThrow(TimeInterval.self, args[2])
+    return (renderer, scene, time)
+}

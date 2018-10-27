@@ -39,12 +39,39 @@ skView.rx.nodeForAnchor = { (view, anchor) -> SKNode? in
     return node
 }
 
-scnView.rx.nodeForAnchor = { (sceneRenderer, anchor) -> SCNNode? in
+skView.
+    .rx
+    .didUpdateNodeForAnchor
+    .subscribe { event in
+        switch event {
+        case .next(let didUpdateNodeForAnchor):
+            // TODO: ...
+            break
+        default:
+            break
+        }
+    }
+    .disposed(by: disposeBag)
+
+scnView.rx.nodeForAnchor = { (renderer, anchor) -> SCNNode? in
     let node: SCNNode? = nil
     // TODO: create node
     return node
 }
 
+scnView.
+    .rx
+    .updateAtTime
+    .subscribe { event in
+        switch event {
+        case .next(let updateAtTime):
+            // TODO: ...
+            break
+        default:
+            break
+        }
+    }
+    .disposed(by: disposeBag)
 ```
 
 Carthage setup.

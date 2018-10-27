@@ -7,29 +7,102 @@
 //
 
 import ARKit
+#if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
+#endif
 
 extension Reactive where Base: ARSCNView {
+    
     // MARK:- ARSCNViewDelegate
     
-    // Reactive wrapper for delegate method `renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?`
-//    public var didUpdateFrame: ControlEvent<ARFrame> {
-//        let source = delegate
-//            .methodInvoked(#selector(ARSCNViewDelegate.renderer(_:nodeFor:)))
-//            .map { value -> ARFrame in
-//                return try castOrThrow(ARFrame.self, value[1] as AnyObject)
-//        }
-//        return ControlEvent(events: source)
-//    }
-
+    public var nodeForAnchor: SCNNodeForAnchor {
+        get {
+            return proxy?.nodeForAnchor ?? RxARSCNViewDelegateProxy.defaultNodeForAnchor
+        }
+        set {
+            proxy?.nodeForAnchor = newValue
+        }
+    }
     
-//    optional public func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?
-//    optional public func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor)
-//    optional public func renderer(_ renderer: SCNSceneRenderer, willUpdate node: SCNNode, for anchor: ARAnchor)
-//    optional public func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor)
-//    optional public func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor)
+    public var didAddNodeForAnchor: ControlEvent<EventSCNNodeForAnchor> {
+        let source: Observable<EventSCNNodeForAnchor> = delegate
+            .methodInvoked(.didAddSCNNodeForAnchor)
+            .map(toEventSCNNodeForAnchor)
+        return ControlEvent(events: source)
+    }
+    
+    public var willUpdateNodeForAnchor: ControlEvent<EventSCNNodeForAnchor> {
+        let source: Observable<EventSCNNodeForAnchor> = delegate
+            .methodInvoked(.willUpdateSCNNodeForAnchor)
+            .map(toEventSCNNodeForAnchor)
+        return ControlEvent(events: source)
+    }
+    
+    public var didUpdateNodeForAnchor: ControlEvent<EventSCNNodeForAnchor> {
+        let source: Observable<EventSCNNodeForAnchor> = delegate
+            .methodInvoked(.didUpdateSCNNodeForAnchor)
+            .map(toEventSCNNodeForAnchor)
+        return ControlEvent(events: source)
+    }
+    
+    public var didRemoveNodeForAnchor: ControlEvent<EventSCNNodeForAnchor> {
+        let source: Observable<EventSCNNodeForAnchor> = delegate
+            .methodInvoked(.didRemoveSCNNodeForAnchor)
+            .map(toEventSCNNodeForAnchor)
+        return ControlEvent(events: source)
+    }
+    
+    // MARK: - SCNSceneRendererDelegate
+    
+    public var updateAtTime: ControlEvent<EventTime> {
+        let source: Observable<EventTime> = delegate
+            .methodInvoked(.updateAtTime)
+            .map(toEventTime)
+        return ControlEvent(events: source)
+    }
 
+    public var didApplyAnimationsAtTime: ControlEvent<EventTime> {
+        let source: Observable<EventTime> = delegate
+            .methodInvoked(.didApplyAnimationsAtTime)
+            .map(toEventTime)
+        return ControlEvent(events: source)
+    }
+    
+    public var didSimulatePhysicsAtTime: ControlEvent<EventTime> {
+        let source: Observable<EventTime> = delegate
+            .methodInvoked(.didSimulatePhysicsAtTime)
+            .map(toEventTime)
+        return ControlEvent(events: source)
+    }
+
+    public var didApplyConstraintsAtTime: ControlEvent<EventTime> {
+        let source: Observable<EventTime> = delegate
+            .methodInvoked(.didApplyConstraintsAtTime)
+            .map(toEventTime)
+        return ControlEvent(events: source)
+    }
+
+    public var willRenderSceneAtTime: ControlEvent<EventRender> {
+        let source: Observable<EventRender> = delegate
+            .methodInvoked(.willRenderSceneAtTime)
+            .map(toEventRender)
+        return ControlEvent(events: source)
+    }
+
+    public var didRenderSceneAtTime: ControlEvent<EventRender> {
+        let source: Observable<EventRender> = delegate
+            .methodInvoked(.didRenderSceneAtTime)
+            .map(toEventRender)
+        return ControlEvent(events: source)
+    }
+
+    // MARK: - private
+    
+    var proxy: RxARSCNViewDelegateProxy? {
+        return self.delegate as? RxARSCNViewDelegateProxy
+    }
+    
     // MARK: -
     
     /// Reactive wrapper for `delegate`.
