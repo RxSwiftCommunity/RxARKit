@@ -51,4 +51,21 @@ func toEventARAnchors(_ args: [Any]) throws -> EventARAnchors {
     return (session, anchors)
 }
 
+// MARK: - ARSKViewDelegate
+
+func toEventSKNodeForAnchor(_ args: [Any]) throws -> EventSKNodeForAnchor {
+    let view = try castOrThrow(ARSKView.self, args[0])
+    let node = try castOrThrow(SKNode.self, args[1])
+    let anchor = try castOrThrow(ARAnchor.self, args[2])
+    return (view, node, anchor)
+}
+
+// MARK: - ARSCNViewDelegate
+
+//func toEventSCNNodeForAnchor(_ args: [Any]) throws -> EventSCNNodeForAnchor {
+//    let session = try castOrThrow(ARSession.self, args[0])
+//    let anchors = try castOrThrow(Array<ARAnchor>.self, args[1])
+//let anchor = try castOrThrow(ARAnchor.self, args[2])
+//    return (session, anchors)
+//}
 

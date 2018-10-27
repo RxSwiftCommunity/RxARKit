@@ -11,24 +11,6 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: ARSCNView {
-    /// Reactive wrapper for `delegate`.
-    /// For more information take a look at `DelegateProxyType` protocol documentation.
-    public var delegate: DelegateProxy<ARSCNView, ARSCNViewDelegate> {
-        return RxARSCNViewDelegateProxy.proxy(for: base)
-    }
-    
-    /// Installs delegate as forwarding delegate on `delegate`.
-    /// Delegate won't be retained.
-    ///
-    /// It enables using normal delegate mechanism with reactive delegate mechanism.
-    ///
-    /// - parameter delegate: Delegate object.
-    /// - returns: Disposable object that can be used to unbind the delegate.
-    public func setDelegate(_ delegate: ARSCNViewDelegate)
-        -> Disposable {
-            return RxARSCNViewDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
-    }
-    
     // MARK:- ARSCNViewDelegate
     
     // Reactive wrapper for delegate method `renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode?`
@@ -48,5 +30,25 @@ extension Reactive where Base: ARSCNView {
 //    optional public func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor)
 //    optional public func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor)
 
+    // MARK: -
+    
+    /// Reactive wrapper for `delegate`.
+    /// For more information take a look at `DelegateProxyType` protocol documentation.
+    public var delegate: DelegateProxy<ARSCNView, ARSCNViewDelegate> {
+        return RxARSCNViewDelegateProxy.proxy(for: base)
+    }
+    
+    /// Installs delegate as forwarding delegate on `delegate`.
+    /// Delegate won't be retained.
+    ///
+    /// It enables using normal delegate mechanism with reactive delegate mechanism.
+    ///
+    /// - parameter delegate: Delegate object.
+    /// - returns: Disposable object that can be used to unbind the delegate.
+    public func setDelegate(_ delegate: ARSCNViewDelegate)
+        -> Disposable {
+            return RxARSCNViewDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
+    }
+    
 }
 

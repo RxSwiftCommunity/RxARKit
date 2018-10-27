@@ -12,27 +12,38 @@ import RxSwift
 import RxCocoa
 #endif
 
+public typealias RxARSCNViewDelegate = DelegateProxy<ARSCNView, ARSCNViewDelegate>
+
 extension ARSCNView: HasDelegate {
     public typealias Delegate = ARSCNViewDelegate
 }
 
-open class RxARSCNViewDelegateProxy
-    : DelegateProxy<ARSCNView, ARSCNViewDelegate>
-    , DelegateProxyType
-, ARSCNViewDelegate {
+open class RxARSCNViewDelegateProxy: RxARSCNViewDelegate, DelegateProxyType, ARSCNViewDelegate {
     
-    /// Typed parent object.
+    /// Type of parent object
     public weak private(set) var view: ARSCNView?
     
-    /// - parameter view: Parent object for delegate proxy.
-    public init(view: ParentObject) {
-        self.view = view
-        super.init(parentObject: view, delegateProxy: RxARSCNViewDelegateProxy.self)
+    /// Init with ParentObject
+    public init(parentObject: ParentObject) {
+        view = parentObject
+        super.init(parentObject: parentObject, delegateProxy: RxARSCNViewDelegateProxy.self)
     }
     
-    // Register known implementationss
+    /// Register self to known implementations
     public static func registerKnownImplementations() {
-        self.register { RxARSCNViewDelegateProxy(view: $0) }
+        self.register { parent -> RxARSCNViewDelegateProxy in
+            RxARSCNViewDelegateProxy(parentObject: parent)
+        }
+    }
+    
+    /// Gets the current `ARSCNViewDelegate` on `ARSCNView`
+    open class func currentDelegate(for object: ParentObject) -> ARSCNViewDelegate? {
+        return object.delegate
+    }
+    
+    /// Set the `ARSCNViewDelegate` for `ARSCNView`
+    open class func setCurrentDelegate(_ delegate: ARSCNViewDelegate?, to object: ParentObject) {
+        object.delegate = delegate
     }
 }
 

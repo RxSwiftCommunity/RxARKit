@@ -23,6 +23,7 @@
 		94F12FEB2184911700EC279A /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F12FEA2184911700EC279A /* Selector.swift */; };
 		94F12FF321849EAF00EC279A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F12FF221849EAF00EC279A /* Event.swift */; };
 		94F12FF521849ED700EC279A /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F12FF421849ED700EC279A /* Mapper.swift */; };
+		94F1300E2184DB3300EC279A /* Lambda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1300D2184DB3300EC279A /* Lambda.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		94F12FEA2184911700EC279A /* Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		94F12FF221849EAF00EC279A /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		94F12FF421849ED700EC279A /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		94F1300D2184DB3300EC279A /* Lambda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lambda.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		94F12FF121849C8200EC279A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				94F1300D2184DB3300EC279A /* Lambda.swift */,
 				94F12FEA2184911700EC279A /* Selector.swift */,
 				94F12FF221849EAF00EC279A /* Event.swift */,
 				94F12FF421849ED700EC279A /* Mapper.swift */,
@@ -312,6 +315,7 @@
 				94E65AF320DD8D1600E49D1B /* ARSession+Rx.swift in Sources */,
 				94E65AFA20DE111100E49D1B /* Helper.swift in Sources */,
 				94E65AF720DD8D3400E49D1B /* ARSCNView+Rx.swift in Sources */,
+				94F1300E2184DB3300EC279A /* Lambda.swift in Sources */,
 				94E65AF520DD8D2900E49D1B /* ARSKView+Rx.swift in Sources */,
 				94E65AF120DD8CF500E49D1B /* RxARSKViewDelegateProxy.swift in Sources */,
 				94F12FF521849ED700EC279A /* Mapper.swift in Sources */,

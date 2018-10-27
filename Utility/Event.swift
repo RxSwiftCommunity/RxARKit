@@ -18,3 +18,11 @@ public typealias EventCMSampleBuffer = (session: ARSession, audioSampleBuffer: C
 
 public typealias EventARFrame = (session: ARSession, frame: ARFrame)
 public typealias EventARAnchors = (session: ARSession, anchors: [ARAnchor])
+
+// MARK: - ARSKViewDelegate
+
+public typealias EventSKNodeForAnchor = (view: ARSKView, node: SKNode, anchor: ARAnchor)
+
+// MARK: - ARSCNViewDelegate
+
+public typealias EventSCNNodeForAnchor = (renderer: SCNSceneRenderer, node: SCNNode, anchor: ARAnchor)
