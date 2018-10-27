@@ -7,8 +7,10 @@
 //
 
 import ARKit
+#if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
+#endif
 
 extension ARSKView: HasDelegate {
     public typealias Delegate = ARSKViewDelegate

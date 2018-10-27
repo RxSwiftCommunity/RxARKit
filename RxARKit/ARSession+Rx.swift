@@ -7,42 +7,92 @@
 //
 
 import ARKit
+#if !RX_NO_MODULE
 import RxSwift
 import RxCocoa
+#endif
 
 extension Reactive where Base: ARSession {
-    /// Reactive wrapper for `delegate`.
-    /// For more information take a look at `DelegateProxyType` protocol documentation.
-    public var delegate: DelegateProxy<ARSession, ARSessionDelegate> {
-        return RxARSessionDelegateProxy.proxy(for: base)
-    }
     
-    /// Installs delegate as forwarding delegate on `delegate`.
-    /// Delegate won't be retained.
-    ///
-    /// It enables using normal delegate mechanism with reactive delegate mechanism.
-    ///
-    /// - parameter delegate: Delegate object.
-    /// - returns: Disposable object that can be used to unbind the delegate.
-    public func setDelegate(_ delegate: ARSessionDelegate)
-        -> Disposable {
-            return RxARSessionDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
-    }
+    // MARK: - ARSessionObserver
     
-    // MARK:- ARSessionDelegate : ARSessionObserver
-    
-    // Reactive wrapper for delegate method `session(_ session: ARSession, didUpdate frame: ARFrame)`
-    public var didUpdateFrame: ControlEvent<ARFrame> {
-        let source = delegate
-            .methodInvoked(#selector(ARSessionDelegate.session(_:didUpdate:) as ((ARSessionDelegate) -> (ARSession, ARFrame) -> Void)?))
-            .map { value -> ARFrame in
-                return try castOrThrow(ARFrame.self, value[1] as AnyObject)
-        }
+    public var didFailWithError: ControlEvent<EventError> {
+        let source: Observable<EventError> = delegate
+            .methodInvoked(.didFailWithError)
+            .map(toEventError)
         return ControlEvent(events: source)
     }
 
-    // MARK:- ARSessionObserver
+    public var cameraDidChangeTrackingState: ControlEvent<EventARCamera> {
+        let source: Observable<EventARCamera> = delegate
+            .methodInvoked(.cameraDidChangeTrackingState)
+            .map(toEventARCamera)
+        return ControlEvent(events: source)
+    }
     
+    public var sessionWasInterrupted: ControlEvent<ARSession> {
+        let source: Observable<ARSession> = delegate
+            .methodInvoked(.sessionWasInterrupted)
+            .map(toARSession)
+        return ControlEvent(events: source)
+    }
+
+    public var sessionInterruptionEnded: ControlEvent<ARSession> {
+        let source: Observable<ARSession> = delegate
+            .methodInvoked(.sessionInterruptionEnded)
+            .map(toARSession)
+        return ControlEvent(events: source)
+    }
+
+    public var sessionShouldAttemptRelocalization: ControlEvent<ARSession> {
+        let source: Observable<ARSession> = delegate
+            .methodInvoked(.sessionShouldAttemptRelocalization)
+            .map(toARSession)
+        return ControlEvent(events: source)
+    }
     
+    public var didOutputAudioSampleBuffer: ControlEvent<EventCMSampleBuffer> {
+        let source: Observable<EventCMSampleBuffer> = delegate
+            .methodInvoked(.didOutputAudioSampleBuffer)
+            .map(toEventCMSampleBuffer)
+        return ControlEvent(events: source)
+    }
+    
+    // MARK: - ARSessionDelegate
+    
+    public var didUpdateFrame: ControlEvent<EventARFrame> {
+        let source: Observable<EventARFrame> = delegate
+            .methodInvoked(.didUpdateFrame)
+            .map(toEventARFrame)
+        return ControlEvent(events: source)
+    }
+    
+    public var didAddAnchors: ControlEvent<EventARAnchors> {
+        let source: Observable<EventARAnchors> = delegate
+            .methodInvoked(.didAddAnchors)
+            .map(toEventARAnchors)
+        return ControlEvent(events: source)
+    }
+
+    public var didUpdateAnchors: ControlEvent<EventARAnchors> {
+        let source: Observable<EventARAnchors> = delegate
+            .methodInvoked(.didUpdateAnchors)
+            .map(toEventARAnchors)
+        return ControlEvent(events: source)
+    }
+
+    public var didRemoveAnchors: ControlEvent<EventARAnchors> {
+        let source: Observable<EventARAnchors> = delegate
+            .methodInvoked(.didRemoveAnchors)
+            .map(toEventARAnchors)
+        return ControlEvent(events: source)
+    }
+
+    // MARK: -
+
+    /// Reactive wrapper for `ARSessionDelegate`.
+    public var delegate: RxARSessionDelegate {
+        return RxARSessionDelegateProxy.proxy(for: base)
+    }
     
 }
