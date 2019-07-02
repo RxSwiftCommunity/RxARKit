@@ -77,7 +77,8 @@ scnView.
 Carthage setup.
 
 ```
-github "maxvol/RxARKit" ~> 0.0.3
+github "RxSwiftCommunity/RxARKit" ~> 0.0.3
 
 ```
 
+Copyright (c) RxSwiftCommunity
